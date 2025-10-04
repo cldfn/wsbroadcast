@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	gin "github.com/cldfn/gina"
 	"github.com/cldfn/utils"
+	"github.com/gin-gonic/gin"
 
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
@@ -56,12 +56,9 @@ func main() {
 		}
 	})
 
-	server := gin.New[WsServerContext]()
-	server.SetContextDataIntializer(func(wsc *WsServerContext) {
+	server := gin.New()
 
-	})
-
-	server.GET("/ws", func(ctx *gin.Context[WsServerContext]) {
+	server.GET("/ws", func(ctx *gin.Context) {
 
 		uid := uuid.New()
 
@@ -86,7 +83,7 @@ func main() {
 		usersInfo.Put(uid, clientWrapp)
 	})
 
-	server.POST("/broadcast", func(c *gin.Context[WsServerContext]) {
+	server.POST("/broadcast", func(c *gin.Context) {
 
 		data, readErr := io.ReadAll(c.Request.Body)
 
@@ -99,7 +96,7 @@ func main() {
 		})
 	})
 
-	server.GET("/broadcast", func(c *gin.Context[WsServerContext]) {
+	server.GET("/broadcast", func(c *gin.Context) {
 
 		data := c.Query("msg")
 
@@ -110,7 +107,7 @@ func main() {
 		})
 	})
 
-	server.GET("/send/:dest", func(c *gin.Context[WsServerContext]) {
+	server.GET("/send/:dest", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"msg": "sent",
 		})
