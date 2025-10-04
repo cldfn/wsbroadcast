@@ -58,7 +58,7 @@ func main() {
 
 	server := gin.New()
 
-	server.GET("/ws", func(ctx *gin.Context) {
+	server.GET("/connect", func(ctx *gin.Context) {
 
 		uid := uuid.New()
 
