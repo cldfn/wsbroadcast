@@ -118,10 +118,9 @@ func main() {
 		Handler: server,
 	}
 
-	chainPath := "/etc/letsencrypt/live/ws.cldfn.com/fullchain.pem"
-	keyPath := "/etc/letsencrypt/live/ws.cldfn.com/privkey.pem"
-
-	if err := nativeServer.ListenAndServeTLS(chainPath, keyPath); err != nil {
+	if err := nativeServer.ListenAndServe(); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
+	return
+
 }
