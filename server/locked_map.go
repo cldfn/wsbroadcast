@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"sync"
@@ -39,6 +39,13 @@ func (mr *LockedMap[Key, T]) Put(key Key, val T) {
 		mr.allocator[key] = &val
 	})
 
+}
+
+// put ref
+func (mr *LockedMap[Key, T]) PutRef(key Key, val *T) {
+	mr.lockMap(func() {
+		mr.allocator[key] = val
+	})
 }
 
 func (mr *LockedMap[Key, T]) Delete(key Key) {
