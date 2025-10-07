@@ -91,8 +91,10 @@ func (g *GlobalRoutes) Path() string {
 	return "/"
 }
 
-func NewGlobalRoutes() *GlobalRoutes {
+func NewGlobalRoutes(b *app.Broadcaster) *GlobalRoutes {
 	r := new(GlobalRoutes)
+
+	r.broadcaster = b
 
 	return r
 }

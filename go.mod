@@ -5,13 +5,14 @@ go 1.23.0
 toolchain go1.24.4
 
 require (
-	github.com/cldfn/utils v0.0.3
+	github.com/fatih/color v1.18.0
 	github.com/gin-gonic/gin v1.11.0
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/websocket v1.5.3
 )
 
 require (
+	github.com/mattn/go-colorable v0.1.13 // indirect
 	go.uber.org/dig v1.19.0 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect

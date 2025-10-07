@@ -19,6 +19,16 @@ func (client *WsClient) Uid() uuid.UUID {
 	return client.uid
 }
 
+func (client *WsClient) Write(data []byte) error {
+	err := client.conn.WriteMessage(websocket.TextMessage, data)
+	if err != nil {
+		client.LastError = err
+	} else {
+		client.LastError = nil
+	}
+	return err
+}
+
 func NewWsClient(conn *websocket.Conn, uid uuid.UUID) *WsClient {
 	return &WsClient{
 		conn:             conn,
